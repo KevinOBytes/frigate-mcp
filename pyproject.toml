@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "frigate-mcp"
+version = "1.0.0"
+description = "Model Context Protocol (MCP) server and CLI for Frigate NVR multi-camera management"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+    { name = "Frigate-MCP Contributors" }
+]
+keywords = ["mcp", "model-context-protocol", "frigate", "nvr", "ai", "camera", "home-assistant", "ptz"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Home Automation",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "mcp>=2.2.0",
+    "starlette>=0.27.0",
+    "uvicorn>=0.31.0",
+    "httpx>=0.28.0",
+    "pyyaml>=6.0.0",
+    "pydantic>=2.10.0",
+    "anyio>=4.9.0",
+    "requests>=2.31.0",
+    "redis>=5.0.0",
+    "paho-mqtt>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.5.0",
+]
+
+[project.scripts]
+frigate-mcp = "app.main:cli_entrypoint"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = ["E501"]

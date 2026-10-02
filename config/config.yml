@@ -1,0 +1,36 @@
+frigate:
+  url: "http://localhost:5000"
+  timeout: 5.0
+
+server:
+  host: "0.0.0.0"
+  port: 5000
+  log_level: "info"
+  debug: false
+  workers: 4
+
+cameras:
+  camera_1:
+    name: "Front Porch"
+    model: "PTZ-1080P"
+    ptz: true
+    audio: true
+    night_vision: true
+  camera_2:
+    name: "Backyard"
+    model: "Fixed-4K"
+    ptz: false
+    audio: true
+    night_vision: true
+  front_door:
+    name: "Front Doorbell"
+    model: "Doorbell-2K"
+    ptz: false
+    audio: true
+    night_vision: true
+  driveway:
+    name: "Driveway"
+    model: "PTZ-4K"
+    ptz: true
+    audio: false
+    night_vision: true

@@ -1,0 +1,18 @@
+# Smithery configuration for Frigate-MCP
+# https://smithery.ai/docs/config
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      frigateUrl:
+        type: string
+        description: "URL to the Frigate NVR server"
+        default: "http://localhost:5000"
+      mqttHost:
+        type: string
+        description: "MQTT Broker host (optional)"
+        default: "localhost"
+  commandFunction:
+    stdio: "frigate-mcp serve --transport stdio"

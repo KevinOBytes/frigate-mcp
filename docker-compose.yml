@@ -1,0 +1,63 @@
+services:
+  frigate-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: frigate-mcp:latest
+    container_name: frigate-mcp
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./app:/app
+      - ./config:/config
+      - ./logs:/logs
+      - ./data:/data
+      - ./cache:/cache
+    environment:
+      - FRIGATE_MCP_ENV=production
+      - FRIGATE_MCP_LOG_LEVEL=info
+      - FRIGATE_MCP_PORT=5000
+      - FRIGATE_MCP_HOST=0.0.0.0
+      - FRIGATE_MCP_DEBUG=false
+      - FRIGATE_MCP_WORKERS=4
+      - FRIGATE_MCP_TIMEOUT=30
+      - FRIGATE_MCP_RELOAD=false
+      - FRIGATE_MCP_WORKDIR=/app
+      - FRIGATE_MCP_CONFIG=/config/config.yml
+      - FRIGATE_MCP_LOG_FILE=/logs/frigate-mcp.log
+      - FRIGATE_MCP_DATA=/data
+      - FRIGATE_MCP_CACHE=/cache
+    profiles:
+      - default
+    
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis-data:/data
+    profiles:
+      - default
+  frigate:
+    container_name: frigate
+    image: ghcr.io/blakeblackshear/frigate:stable-standard-arm64
+    restart: unless-stopped
+    shm_size: "512mb" # update for your cameras based on calculation above
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /path/to/your/config:/config
+      - /path/to/your/recordings:/recordings
+    ports:
+      - "8971:8971"
+      # If exposing on macOS map to a diffent host port like 5001 or any orher port with no conflicts
+      # - "5001:5000" # Internal unauthenticated access. Expose carefully.
+      - "8554:8554" # RTSP feeds
+    extra_hosts:
+      # This is very important
+      # It allows frigate access to the NPU on Apple Silicon via Apple Silicon Detector
+      - "host.docker.internal:host-gateway" # Required to talk to the NPU detector
+    environment:
+      - FRIGATE_RTSP_PASSWORD="password"
