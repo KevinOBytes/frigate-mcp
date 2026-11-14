@@ -1,5 +1,7 @@
 # Frigate-MCP
 
+<!-- mcp-name: io.github.KevinOBytes/frigate-mcp -->
+
 [![CI](https://github.com/KevinOBytes/frigate-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/KevinOBytes/frigate-mcp/actions/workflows/ci.yml)
 [![PyPI version](https://img.shields.io/pypi/v/frigate-mcp.svg)](https://pypi.org/project/frigate-mcp/)
 [![Smithery](https://smithery.ai/badge/@KevinOBytes/frigate-mcp)](https://smithery.ai/server/@KevinOBytes/frigate-mcp)

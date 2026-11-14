@@ -2,6 +2,8 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
+LABEL io.modelcontextprotocol.server.name="io.github.KevinOBytes/frigate-mcp"
+
 # Install curl for container health check
 RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
 
