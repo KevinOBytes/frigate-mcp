@@ -7,16 +7,16 @@ name = "frigate-mcp"
 version = "1.0.0"
 description = "Model Context Protocol (MCP) server and CLI for Frigate NVR multi-camera management"
 readme = "README.md"
-license = { text = "MIT" }
+license = "MIT"
 requires-python = ">=3.10"
 authors = [
+    { name = "Kevin O'Connor" },
     { name = "Frigate-MCP Contributors" }
 ]
 keywords = ["mcp", "model-context-protocol", "frigate", "nvr", "ai", "camera", "home-assistant", "ptz"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -45,6 +45,13 @@ dev = [
 
 [project.scripts]
 frigate-mcp = "app.main:cli_entrypoint"
+
+[project.urls]
+Homepage = "https://github.com/KevinOBytes/frigate-mcp"
+Repository = "https://github.com/KevinOBytes/frigate-mcp.git"
+Issues = "https://github.com/KevinOBytes/frigate-mcp/issues"
+Documentation = "https://github.com/KevinOBytes/frigate-mcp#readme"
+Changelog = "https://github.com/KevinOBytes/frigate-mcp/releases"
 
 [tool.setuptools.packages.find]
 include = ["app*"]

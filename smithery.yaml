@@ -8,11 +8,26 @@ startCommand:
     properties:
       frigateUrl:
         type: string
+        title: "Frigate URL"
         description: "URL to the Frigate NVR server"
         default: "http://localhost:5000"
       mqttHost:
         type: string
-        description: "MQTT Broker host (optional)"
+        title: "MQTT Broker Host"
+        description: "MQTT Broker hostname or IP address"
         default: "localhost"
-  commandFunction:
-    stdio: "frigate-mcp serve --transport stdio"
+      mqttPort:
+        type: number
+        title: "MQTT Broker Port"
+        description: "MQTT Broker port number"
+        default: 1883
+  commandFunction: |-
+    (config) => ({
+      command: 'uvx',
+      args: ['frigate-mcp', 'serve', '--transport', 'stdio'],
+      env: {
+        FRIGATE_URL: config.frigateUrl || 'http://localhost:5000',
+        MQTT_BROKER_HOST: config.mqttHost || 'localhost',
+        MQTT_BROKER_PORT: String(config.mqttPort || 1883)
+      }
+    })

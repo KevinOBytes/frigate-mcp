@@ -1,6 +1,37 @@
-## Frigate-MCP 
+# Frigate-MCP
 
-Frigate-MCP is a project that integrates with Frigate to provide enhanced multi-camera processing capabilities via model context protocol (MCP).
+[![CI](https://github.com/KevinOBytes/frigate-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/KevinOBytes/frigate-mcp/actions/workflows/ci.yml)
+[![PyPI version](https://img.shields.io/pypi/v/frigate-mcp.svg)](https://pypi.org/project/frigate-mcp/)
+[![Smithery](https://smithery.ai/badge/@KevinOBytes/frigate-mcp)](https://smithery.ai/server/@KevinOBytes/frigate-mcp)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+A Model Context Protocol (MCP) server, CLI, and HTTP gateway for **[Frigate NVR](https://frigate.video/)** multi-camera management. Connect AI agents (such as Claude Desktop, Cursor, Antigravity, and LibreChat) directly to your home security cameras to query events, control PTZ pan/tilt/zoom, adjust image sensor settings, capture snapshots, and receive real-time MQTT alerts.
+
+---
+
+## Quick Install & Run
+
+### Option 1: Smithery (Claude Desktop 1-Click Install)
+Install into Claude Desktop automatically via [Smithery](https://smithery.ai/server/@KevinOBytes/frigate-mcp):
+```bash
+npx -y @smithery/cli install @KevinOBytes/frigate-mcp --client claude
+```
+
+### Option 2: Run with uvx (Zero Install)
+Run directly without installing via `uvx`:
+```bash
+uvx frigate-mcp serve --transport stdio
+```
+
+### Option 3: Docker / Docker Compose
+```bash
+docker-compose up -d
+```
+
+---
+
+Frigate-MCP integrates with Frigate to provide enhanced multi-camera processing capabilities via the Model Context Protocol (MCP).
 
 It works by running as a docker container that can then access frigate services using the docker container and the frigate python library. This allows for seamless integration and management of multiple cameras within the Frigate ecosystem.
 
@@ -133,7 +164,7 @@ Ensure you have Python 3.12 installed, as it is required for the development env
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/frigate-mcp.git
+git clone https://github.com/KevinOBytes/frigate-mcp.git
 cd frigate-mcp
 ```
 
