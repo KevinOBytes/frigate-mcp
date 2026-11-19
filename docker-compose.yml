@@ -6,6 +6,7 @@ services:
     image: frigate-mcp:latest
     container_name: frigate-mcp
     restart: always
+    command: ["frigate-mcp", "serve", "--transport", "sse", "--host", "0.0.0.0", "--port", "5000"]
     ports:
       - "5000:5000"
     volumes:
