@@ -4,7 +4,6 @@
 
 [![CI](https://github.com/KevinOBytes/frigate-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/KevinOBytes/frigate-mcp/actions/workflows/ci.yml)
 [![PyPI version](https://img.shields.io/pypi/v/frigate-mcp.svg)](https://pypi.org/project/frigate-mcp/)
-[![Smithery](https://smithery.ai/badge/@KevinOBytes/frigate-mcp)](https://smithery.ai/server/@KevinOBytes/frigate-mcp)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -14,21 +13,32 @@ A Model Context Protocol (MCP) server, CLI, and HTTP gateway for **[Frigate NVR]
 
 ## Quick Install & Run
 
-### Option 1: Smithery (Claude Desktop 1-Click Install)
-Install into Claude Desktop automatically via [Smithery](https://smithery.ai/server/@KevinOBytes/frigate-mcp):
-```bash
-npx -y @smithery/cli install @KevinOBytes/frigate-mcp --client claude
-```
-
-### Option 2: Run with uvx (Zero Install)
-Run directly without installing via `uvx`:
+### Option 1: Run with uvx (Zero Install, Recommended)
+Run directly without pre-installing dependencies via `uvx`:
 ```bash
 uvx frigate-mcp serve --transport stdio
 ```
 
-### Option 3: Docker / Docker Compose
+### Option 2: Docker / Docker Compose
+Run locally as a service or container listening on port 5000:
 ```bash
 docker-compose up -d
+```
+
+### Option 3: Claude Desktop Configuration
+Add the following to your `claude_desktop_config.json`:
+```json
+{
+  "mcpServers": {
+    "frigate-mcp": {
+      "command": "uvx",
+      "args": ["frigate-mcp", "serve", "--transport", "stdio"],
+      "env": {
+        "FRIGATE_URL": "http://localhost:5000"
+      }
+    }
+  }
+}
 ```
 
 ---
